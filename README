@@ -1,0 +1,38 @@
+# Ecommerce Backend – Usuarios y Autenticación
+
+Entrega N°1 del curso **Backend: Diseño y Arquitectura** (Coderhouse).
+
+En este proyecto se implementa un sistema de usuarios con autenticación y autorización utilizando **Passport**, **JWT** y **bcrypt**.
+
+---
+
+## Funcionalidades
+
+- Modelo de usuario con los campos solicitados
+- Encriptación de contraseñas con bcrypt
+- Registro y login de usuarios
+- Autenticación mediante JWT
+- Endpoint `/api/sessions/current` para validar al usuario logueado
+
+---
+
+## Autenticación
+
+Se utilizan estrategias de **Passport Local** para el registro y login, y **Passport JWT** para proteger rutas y obtener el usuario a partir del token.
+
+El token JWT se genera al iniciar sesión y se guarda en una cookie HTTP Only.
+
+---
+
+## Tecnologías
+
+- Node.js
+- Express
+- MongoDB + Mongoose
+- Passport
+- JWT
+- bcrypt
+
+---
+
+## Variables de entorno

@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "Tatiana Laurich",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "mongoose": "^9.2.0"
+  }
 }
