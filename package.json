@@ -1,16 +1,27 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
+  "description": "Backend Ecommerce - Curso Backend Coderhouse",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
   "author": "Tatiana Laurich",
   "license": "MIT",
-  "description": "",
   "dependencies": {
-    "mongoose": "^9.2.0"
+    "express": "^5.2.1",
+    "mongoose": "^9.2.0",
+    "bcrypt": "^5.1.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-jwt": "^4.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
