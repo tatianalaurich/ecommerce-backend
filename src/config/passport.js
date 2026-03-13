@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import { createHash, isValidPassword } from "../utils/crypto.js";
-import UserRepository from "../repositories/user.repository.js";
+import UserRepository from "../repositories/users.repository.js";
 
 const userRepository = new UserRepository();
 
