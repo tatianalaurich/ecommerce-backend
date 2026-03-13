@@ -1,8 +1,10 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import { UserModel } from "../models/user.model.js";
 import { createHash, isValidPassword } from "../utils/crypto.js";
+import UserRepository from "../repositories/user.repository.js";
+
+const userRepository = new UserRepository();
 
 export const initializePassport = () => {
     passport.use(
@@ -13,10 +15,10 @@ export const initializePassport = () => {
             try {
             const { first_name, last_name, age } = req.body;
 
-            const exists = await UserModel.findOne({ email });
+            const exists = await userRepository.getUserByEmail(email);
             if (exists) return done(null, false, { message: "Email ya registrado" });
 
-            const user = await UserModel.create({
+            const user = await userRepository.createUser({
                 first_name,
                 last_name,
                 email,
@@ -38,11 +40,12 @@ export const initializePassport = () => {
         { usernameField: "email" },
         async (email, password, done) => {
             try {
-            const user = await UserModel.findOne({ email });
+            const user = await userRepository.getUserByEmail(email);
             if (!user) return done(null, false, { message: "Usuario no encontrado" });
 
-            if (!isValidPassword(password, user.password))
+            if (!isValidPassword(password, user.password)) {
                 return done(null, false, { message: "Password incorrecta" });
+            }
 
             return done(null, user);
             } catch (err) {
@@ -64,7 +67,7 @@ export const initializePassport = () => {
         },
         async (jwtPayload, done) => {
             try {
-            const user = await UserModel.findById(jwtPayload.id).select("-password");
+            const user = await userRepository.getUserById(jwtPayload.id);
             if (!user) return done(null, false, { message: "Token válido pero usuario no existe" });
 
             return done(null, user);

@@ -1,8 +1,20 @@
 import { Router } from "express";
 import passport from "passport";
 import { generateToken } from "../utils/jwt.js";
+import UserDTO from "../dto/user.dto.js";
+import { forgotPassword, resetPassword } from "../controllers/sessions.controller.js";
 
 const router = Router();
+
+router.post(
+    "/forgot-password", 
+    forgotPassword
+);
+
+router.post(
+    "/reset-password/:token", 
+    resetPassword
+);
 
 router.post(
     "/register",
@@ -33,7 +45,12 @@ router.get(
     "/current",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        res.json({ status: "success", user: req.user });
+        const userDto = new UserDTO(req.user);
+
+        res.json({
+        status: "success",
+        user: userDto
+        });
     }
 );
 
