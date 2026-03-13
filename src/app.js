@@ -5,9 +5,11 @@ import { initializePassport } from "./config/passport.js";
 import sessionsRouter from "./routes/sessions.router.js";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 
+app.use(errorHandler);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
