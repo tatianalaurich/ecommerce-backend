@@ -1,38 +1,53 @@
-# Ecommerce Backend – Usuarios y Autenticación
+# Ecommerce Backend API
 
-Entrega N°1 del curso **Backend: Diseño y Arquitectura** (Coderhouse).
-
-En este proyecto se implementa un sistema de usuarios con autenticación y autorización utilizando **Passport**, **JWT** y **bcrypt**.
-
----
-
-## Funcionalidades
-
-- Modelo de usuario con los campos solicitados
-- Encriptación de contraseñas con bcrypt
-- Registro y login de usuarios
-- Autenticación mediante JWT
-- Endpoint `/api/sessions/current` para validar al usuario logueado
-
----
-
-## Autenticación
-
-Se utilizan estrategias de **Passport Local** para el registro y login, y **Passport JWT** para proteger rutas y obtener el usuario a partir del token.
-
-El token JWT se genera al iniciar sesión y se guarda en una cookie HTTP Only.
-
----
+API backend desarrollada con **Node.js, Express y MongoDB** como parte de la **Entrega Final del curso Programación Backend – Coderhouse**.
 
 ## Tecnologías
 
-- Node.js
-- Express
-- MongoDB + Mongoose
-- Passport
-- JWT
-- bcrypt
+* Node.js
+* Express
+* MongoDB + Mongoose
+* Passport.js
+* JWT
+* Bcrypt
+* Nodemailer
 
----
+## Arquitectura
 
-## Variables de entorno
+El proyecto implementa una arquitectura modular separando responsabilidades:
+
+```
+src
+ ├ controllers
+ ├ dao
+ ├ dto
+ ├ middlewares
+ ├ models
+ ├ repositories
+ ├ routes
+ └ utils
+```
+
+Incluye **DAO, Repository, DTO y Middlewares de autorización por roles**.
+
+## Funcionalidades principales
+
+* Registro y login de usuarios
+* Autenticación con **JWT y Passport**
+* Endpoint `/current` utilizando **DTO**
+* Recuperación de contraseña con email y token que expira en 1 hora
+* Sistema de roles (**admin / user**)
+* Gestión de productos y carritos
+* Lógica de compra con generación de **Ticket**
+
+## Instalación
+
+```
+git clone https://github.com/tatianalaurich/ecommerce-backend.git
+npm install
+npm run dev
+```
+
+## Autor
+
+Tatiana Laurich
